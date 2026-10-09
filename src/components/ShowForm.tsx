@@ -15,6 +15,7 @@ export const ShowForm: React.FC<ShowFormProps> = ({ onAdd }) => {
   const [type, setType] = useState<MediaType>('series' as MediaType);
   const [year, setYear] = useState('');
   const [genre, setGenre] = useState('');
+  const [videoLink, setVideoLink] = useState('');
   const [poster, setPoster] = useState('');
   const [totalEpisodes, setTotalEpisodes] = useState('12');
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +53,7 @@ export const ShowForm: React.FC<ShowFormProps> = ({ onAdd }) => {
     type,
     status: 'plan_to_watch',
     poster: poster.trim(),
+    videoLink: videoLink.trim() || undefined,
     year: year ? parseInt(year) : undefined,
     genre: genre.trim(),
     totalEpisodes: epsCount,
@@ -64,6 +66,7 @@ export const ShowForm: React.FC<ShowFormProps> = ({ onAdd }) => {
   setTitle('');
   setYear('');
   setGenre('');
+  setVideoLink('');
   setPoster('');
   setTotalEpisodes('12');
   setOpen(false);
@@ -141,6 +144,17 @@ return (
               value={genre}
               onChange={(e) => setGenre(e.target.value)}
             />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label className="text-sm font-medium text-zinc-400">Link YouTube</label>
+        <Input
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=..."
+          className="bg-zinc-900/50 border-zinc-800 focus-visible:ring-red-600 text-white"
+          value={videoLink}
+          onChange={(e) => setVideoLink(e.target.value)}
+        />
       </div>
 
       <div className=''>

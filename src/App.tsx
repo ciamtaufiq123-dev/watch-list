@@ -36,7 +36,7 @@ export default function App() {
 
   useEffect(() => {
     saveWatchlist(items);
-  }, [items]);
+    }, [items]);
 
   const handleAddShow = (newShow: ShowItem) => {
     setItems((previousItems) => [newShow, ...previousItems]);

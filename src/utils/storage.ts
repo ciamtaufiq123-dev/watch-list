@@ -27,6 +27,7 @@ function isShowItem(value: unknown): value is ShowItem {
     && Array.isArray(item.episodes)
     && item.episodes.every(isEpisode)
     && (item.notes === undefined || typeof item.notes === 'string')
+    && (item.videoLink === undefined || typeof item.videoLink === 'string')
     && typeof item.createdAt === 'number';
 }
 

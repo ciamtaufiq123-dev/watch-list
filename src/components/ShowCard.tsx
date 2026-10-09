@@ -54,6 +54,18 @@ export const ShowCard: React.FC<ShowCardProps> = ({ show, onClick }) => {
             className="h-1.5 bg-zinc-900 [&>div]:bg-red-600"
           />
         </div>
+
+        {show.videoLink && (
+          <a
+            href={show.videoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => event.stopPropagation()}
+            className="rounded-md bg-red-600 px-3 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-red-700"
+          >
+            Tonton di YouTube
+          </a>
+        )}
       </CardContent>
     </Card>
   );

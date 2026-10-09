@@ -16,6 +16,7 @@ export interface ShowItem {
     type: MediaType;
     status: WatchStatus;
     poster?: string;
+    videoLink?: string;
     year?: number;
     genre?: string;
     description?: string;
