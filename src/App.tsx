@@ -29,7 +29,7 @@ export default function App() {
 
   const filteredItems = items.filter((item) => {
     const matchSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchStatus = filterStatus === 'all' || item.status === filterStatus;
+    const matchStatus = filterStatus === 'all' || item.status  === filterStatus;
 
     return matchSearch && matchStatus;
   });

@@ -40,6 +40,7 @@ export const ShowForm: React.FC<ShowFormProps> = ({ onAdd }) => {
   
 
   const epsCount = parseInt (totalEpisodes);
+  
   const generatedEpisodes = Array.from({ length: epsCount }, (_, i) => ({
     id: crypto.randomUUID(),
     episodeNumber: i + 1,
