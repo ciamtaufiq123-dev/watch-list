@@ -5,7 +5,6 @@ export interface Episode {
     id: string;
     episodeNumber?: number;
     title: string;
-    videoLink?: string;
     notes?: string;
     isWatched: boolean;
 }

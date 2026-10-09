@@ -15,7 +15,6 @@ export const EpisodeForm: React.FC<EpisodeFormProps> = ({ episodeToEdit, onSave,
 
     const [episodeNumber, setEpisodeNumber] = useState(episodeToEdit?.episodeNumber?.toString() || '');
     const [title, setTitle] = useState(episodeToEdit?.title || '');
-    const [videoLink, setVideoLink] = useState(episodeToEdit?.videoLink || '');
     const [notes, setNotes] = useState(episodeToEdit?.notes || '');
     const [isWatched, setIsWatched] = useState(episodeToEdit?.isWatched || false);
 
@@ -28,7 +27,6 @@ const handleSubmit = (e: React.FormEvent) => {
         id: episodeToEdit?.id || crypto.randomUUID(),
         episodeNumber: parseInt(episodeNumber),
         title: title.trim(),
-        videoLink: videoLink.trim(),
         notes: notes.trim(),
         isWatched,
     };
@@ -38,7 +36,6 @@ const handleSubmit = (e: React.FormEvent) => {
     if (!episodeToEdit) {
         setEpisodeNumber('');
         setTitle('');
-        setVideoLink('');
         setNotes('');
         setIsWatched(false);
     };
@@ -70,11 +67,6 @@ return (
                 <div className='flex flex-col gap-1.5'>
                     <label className='text-sm text-zinc-400 font-medium'>Title</label>
                     <Input className='bg-zinc-900 border-zinc-800 focus-visible:ring-red-600 text-white' value={title} onChange={(e) => setTitle(e.target.value)}/>
-                </div>
-
-                <div className='flex flex-col gap-1.5'>
-                    <label className='text-sm text-zinc-400 font-medium'>Video Link</label>
-                    <Input className='bg-zinc-900 border-zinc-800 focus-visible:ring-red-600 text-white' type='url' placeholder='https://...' value={videoLink} onChange={(e) => setVideoLink(e.target.value)}/>
                 </div>
 
                 <div className='flex flex-col gap-1.5'>

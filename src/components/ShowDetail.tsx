@@ -2,6 +2,8 @@ import React from 'react';
 import type { ShowItem, Episode } from '../types/watchlist';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog';
 import { Badge } from '../components/ui/badge';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import { ProgressBar } from '../components/ProgressBar';
 import { calculateShowProgress } from '../utils/progress';
 import { EpisodeList } from '../components/EpisodeList';
@@ -18,6 +20,19 @@ export const ShowDetail: React.FC<ShowDetailProps> = ({ show, isOpen, onClose, o
     if (!show) return null;
 
     const progressPercentage = calculateShowProgress(show.episodes);
+
+    const handleSaveVideoLink = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const submittedVideoLink = formData.get('videoLink');
+        const trimmedVideoLink = typeof submittedVideoLink === 'string'
+            ? submittedVideoLink.trim()
+            : '';
+        onUpdateShow({
+            ...show,
+            videoLink: trimmedVideoLink || undefined,
+        });
+    };
 
     const updateEpisodesData = (updatedEpisodes: Episode[]) => {
         const newWatchedCount = updatedEpisodes.filter((ep) => ep.isWatched).length;
@@ -104,6 +119,19 @@ export const ShowDetail: React.FC<ShowDetailProps> = ({ show, isOpen, onClose, o
                                 total={show.totalEpisodes}
                                 percentage={progressPercentage}
                             />
+                            <form key={show.id} onSubmit={handleSaveVideoLink} className="flex gap-2">
+                                <Input
+                                    type="url"
+                                    name="videoLink"
+                                    placeholder="Tempel link YouTube di sini"
+                                    aria-label="Link YouTube"
+                                    className="min-w-0 bg-zinc-900/50 border-zinc-800 text-white"
+                                    defaultValue={show.videoLink ?? ''}
+                                />
+                                <Button type="submit" className="shrink-0 bg-red-600 text-white hover:bg-red-700">
+                                    Simpan link
+                                </Button>
+                            </form>
                         </div>
                     </div>
                 </DialogHeader>
